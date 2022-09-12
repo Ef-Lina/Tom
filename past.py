@@ -1,2 +1,3 @@
 
 print("OON")
+run
