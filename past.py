@@ -1,1 +1,2 @@
-ghk
+
+print("OON")
