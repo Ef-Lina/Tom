@@ -19,12 +19,15 @@ class Constellation:
 		self._b = b
 	
 	def exp(self):
-		m = numpy.sqrt((self._a)**2 + (self._b)**2)
-		p = (self._a)/m
-		if self._b < 0:
-			return Constellation(m, -numpy.arccos(p))
+		if self._b == 0 and self._a == 0:
+			return Constellation(self._a,self._b)
 		else:
-			return Constellation(m, numpy.arccos(p))
+			m = numpy.sqrt((self._a)**2 + (self._b)**2)
+			p = (self._a)/m
+			if self._b < 0:
+				return Constellation(m, -numpy.arccos(p))
+			else:
+				return Constellation(m, numpy.arccos(p))
 
 	def rexp(self):
 		return Constellation(self._a * numpy.cos(self._b), self._a * numpy.sin(self._b))
