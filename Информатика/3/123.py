@@ -46,24 +46,10 @@ class List:
             self._finish_pointer = self._finish_pointer.get_next()
             self._length += 1
 
-    def __getitem__(self, i):
-        if i < 0 or i >= self._length:
+    def __getitem__(self, i): 
+        if i < 0 or i > self._length:
             return False
-        elif i >= self._length/2:
-            curr_pointer = self._finish_pointer
-            for j in range(self._length, i, -1):
-                curr_pointer = curr_pointer.get_prev()
-            for x in range(i, self._length-1, 1):
-                
-            return curr_pointer.get_value()
-        else:
-            curr_pointer = self._start_pointer
-            for j in range(i, self._length/2, 1):
-                curr_pointer = curr_pointer.get_next()
-            return curr_pointer.get_value()
-    def__pop__(self, i):
-        if i < 0 or i >= self._length:
-            return False
+
         elif i >= self._length/2:
             curr_pointer = self._finish_pointer
             for j in range(self._length, i, -1):
@@ -71,10 +57,34 @@ class List:
             return curr_pointer.get_value()
         else:
             curr_pointer = self._start_pointer
-            for j in range(i, self._length/2, 1):
+            for j in range(i):
                 curr_pointer = curr_pointer.get_next()
             return curr_pointer.get_value()
-        return getitem(self, i)
+
+    def __pop__(self, i): 
+        if i < 0 or i >= self._length:
+            return False
+        
+        elif i >= self._length/2:
+            curr_pointer = self._finish_pointer
+            for j in range(self._length, i, -1):
+                curr_pointer = curr_pointer.get_prev()
+            return curr_pointer.get_value()
+            self[i-1].set_next(self[i+1].get_value())
+            self[i+1].set_prev(self[i-1].get_value())
+            for j in range (i+1, self._length):
+                self[j] = self[j+1]
+            self._length -= 1
+    def sum(self, other):
+        if other._length == 0:
+            return self
+        else:
+            self._finish_pointer.set_next(other._start_pointer())
+            for i in range(other._length):
+                self._finish_pointer = other[i]
+                self._length += 1
+            return self
+
 
     def __str__(self):
         arr = []
