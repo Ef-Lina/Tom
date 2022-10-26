@@ -44,7 +44,7 @@ class List:
             self._finish_pointer = self._finish_pointer.get_next()
             self._length += 1
 
-    def multiappend(self,*args): # множественное дополнение работает 
+    def multiappend(self,*args):
         for value in args:
             if self._length == 0:
                 self._start_pointer = Node(value) 
@@ -55,7 +55,7 @@ class List:
                 self._finish_pointer = self._finish_pointer.get_next()
                 self._length += 1
 
-    def __getitem__(self, i): # работает /была ошибка из-за недоопределенности середины
+    def __getitem__(self, i):
         if i < 0 or i > self._length:
             return False
 
