@@ -69,6 +69,13 @@ class List:
             for j in range(i):
                 curr_pointer = curr_pointer.get_next()
             return curr_pointer.get_value()
+        
+    def sum(self,other):
+        value = other._start_pointer
+        for x in range(1, other._length):
+            self.append(value.get_value())
+            value = value.get_next()
+        return self
 
     def __str__(self):
         arr = []
