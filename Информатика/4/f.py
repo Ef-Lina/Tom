@@ -27,10 +27,10 @@ class Shape:
 		self._type = type
 	def __str__(self):
 		return str(self._type)
-	#def area (self):
-	#	return 
+	def area (self):
+		return Point.dist(self._point_1, self._point_2) * Point.dist(self._point_2, self._point_3)
 	def perimeter (self):
-		return dist._point(p1, p2) + dist._point(p2, p3) + dist._point(p3, p1)
+		return Point.dist(self._point_1, self._point_2) + Point.dist(self._point_2, self._point_3) + Point.dist(self._point_3, self._point_4) + Point.dist(self._point_4, self._point_1)
 
 
 class Сircle(Shape):
@@ -53,6 +53,14 @@ class Triangle(Shape):
         self._point_3 = p3
     def __str__(self):
         return " ".join([super().__str__(), self._point_1.__str__(), self._point_2.__str__(), self._point_3.__str__()])
+    def perimeter (self):
+    	return Point.dist(self._point_1, self._point_2) + Point.dist(self._point_2, self._point_3) + Point.dist(self._point_3, self._point_1)
+    def area (self):
+    	p = (Triangle.perimeter(self))/2
+    	a = Point.dist(self._point_1, self._point_2)
+    	b = Point.dist(self._point_2, self._point_3)
+    	c = Point.dist(self._point_3, self._point_1)
+    	return numpy.sqrt(p*(p-a)*(p-b)*(p-c))
 
 class Rectangle(Shape):
 	def __init__(self, p1, p2, p3, p4, type="Rectangle"):
@@ -75,17 +83,23 @@ class Rhomb(Rectangle):
 	def __init__(self, p1, p2, p3, p4, type="Rhomb"):
 		super().__init__(p1, p2, p3, p4, type)
 	def __str__(self):
-		return super().__str__() 
+		return super().__str__()
+	def area (self):
+		return Point.dist(self._point_1, self._point_3) * Point.dist(self._point_2, self._point_4)/2 
 
 
-a = Triangle(Point(), Point(1, 1), Point(2, 3))
+a = Triangle(Point(), Point(0, 3), Point(4, 0))
 b = Сircle(Point(1, 1), 5)
 c = Square(Point(), Point(0, 1), Point(1, 1), Point(1,0))
+d = Rhomb(Point(), Point(0, 1), Point(1, 1), Point(1,0))
 print(a)
 print(b)
 print(c)
 print(b.area())
 print(a.perimeter())
+print(c.perimeter())
+print(d.area())
+print(a.area())
 
 	
 		
